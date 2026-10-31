@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Electricidad y magnetismo · Física II</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+  </head>
+  <body>
+    <main>
+      <!-- inicio -->
+      <section class="vista" id="inicio">
+        <header class="hero">
+          <p class="kicker">Física II · Proyecto final</p>
+          <h1>Electricidad y magnetismo</h1>
+          <p class="sub">
+            Fórmulas, ejemplos resueltos y ejercicios de los 10 temas. Haz clic en un tema para verlo.
+          </p>
+        </header>
+
+        <!-- Las tarjetas de los 10 temas las crea js/app.js -->
+        <div class="grid" id="temas"></div>
+
+        <h2 class="gt">Herramientas</h2>
+        <div class="grid tools3">
+          <button class="tile" data-go="calculadora">
+            <span class="gl">÷</span>
+            <span class="tt">Calculadora de Coulomb</span>
+            <span class="fo">Calcula la fuerza entre dos cargas</span>
+          </button>
+          <button class="tile" data-go="videos">
+            <span class="gl">▶</span>
+            <span class="tt">Videos del grupo</span>
+            <span class="fo">Sube o pega tu video</span>
+          </button>
+          <button class="tile" data-go="refs">
+            <span class="gl">§</span>
+            <span class="tt">Referencias</span>
+            <span class="fo">Libros y fuentes</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- tema (se llena desde js/app.js) -->
+      <section class="vista" id="tema" hidden>
+        <div class="barra">
+          <button data-go="">← Todos los temas</button>
+          <span>
+            <button id="tema-anterior" data-go="">‹ Anterior</button>
+            <button id="tema-siguiente" data-go="">Siguiente ›</button>
+          </span>
+        </div>
+
+        <p class="num" id="tema-numero"></p>
+        <h2 id="tema-titulo"></h2>
+        <p class="lead" id="tema-descripcion"></p>
+
+        <div class="tabs2" role="tablist">
+          <button data-tab="formulas" aria-selected="true">Fórmulas</button>
+          <button data-tab="ejemplo" aria-selected="false">Ejemplo resuelto</button>
+          <button data-tab="practica" aria-selected="false">Practicar</button>
+          <button data-tab="simuladores" aria-selected="false">Simuladores</button>
+        </div>
+
+        <div id="panel-formulas"></div>
+        <div id="panel-ejemplo" hidden></div>
+        <div id="panel-practica" hidden></div>
+        <div id="panel-simuladores" hidden></div>
+      </section>
+
+      <!-- calculadora de coulomb -->
+      <section class="vista pagina" id="calculadora" hidden>
+        <div class="barra"><button data-go="">← Todos los temas</button></div>
+        <h2>Calculadora de la ley de Coulomb</h2>
+        <p class="lead">
+          F = k·|q₁·q₂| / r². Escribe las cargas con su signo y la distancia; elige la unidad de cada dato.
+        </p>
+
+        <div class="box">
+          <div class="campo">
+            <label for="coulomb-q1">Carga q₁</label>
+            <div class="entrada">
+              <input type="text" id="coulomb-q1" inputmode="decimal" autocomplete="off" placeholder="Ej. 3 o -2.5" />
+              <select id="coulomb-q1-unidad" aria-label="Unidad de q₁">
+                <option value="1">C</option>
+                <option value="1e-3">mC</option>
+                <option value="1e-6" selected>µC</option>
+                <option value="1e-9">nC</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="coulomb-q2">Carga q₂</label>
+            <div class="entrada">
+              <input type="text" id="coulomb-q2" inputmode="decimal" autocomplete="off" placeholder="Ej. 5 o -1" />
+              <select id="coulomb-q2-unidad" aria-label="Unidad de q₂">
+                <option value="1">C</option>
+                <option value="1e-3">mC</option>
+                <option value="1e-6" selected>µC</option>
+                <option value="1e-9">nC</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="coulomb-r">Distancia r</label>
+            <div class="entrada">
+              <input type="text" id="coulomb-r" inputmode="decimal" autocomplete="off" placeholder="Ej. 30" />
+              <select id="coulomb-r-unidad" aria-label="Unidad de r">
+                <option value="1">m</option>
+                <option value="1e-2" selected>cm</option>
+                <option value="1e-3">mm</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="go" id="coulomb-calcular">Calcular</button>
+          <button class="go alt" id="coulomb-limpiar">Limpiar</button>
+
+          <div class="out" id="coulomb-resultado" role="status" aria-live="polite">El resultado aparecerá aquí.</div>
+        </div>
+      </section>
+
+      <!-- videos -->
+      <section class="vista pagina" id="videos" hidden>
+        <div class="barra"><button data-go="">← Todos los temas</button></div>
+        <h2>Nuestros videos</h2>
+        <p class="lead">
+          Sube el video de tu equipo para verlo aquí o pega el enlace de YouTube o Drive para guardarlo en la lista.
+        </p>
+
+        <div class="box">
+          <label for="video-titulo">Título del video y equipo</label>
+          <input type="text" id="video-titulo" placeholder="Ej. Ley de Gauss – Equipo 3" />
+
+          <label for="video-archivo">Archivo de video (se reproduce en tu navegador)</label>
+          <input type="file" id="video-archivo" accept="video/*" />
+
+          <label for="video-enlace">O enlace del video</label>
+          <input type="text" id="video-enlace" placeholder="https://youtu.be/..." />
+
+          <button class="go" id="video-agregar">Agregar video</button>
+          <p class="note" id="video-mensaje" role="status" aria-live="polite">
+            Los archivos subidos solo se ven en tu dispositivo y se pierden al cerrar la página. Para compartirlos con
+            todos, súbelos a YouTube o Drive y pega el enlace.
+          </p>
+        </div>
+
+        <div id="video-lista"></div>
+      </section>
+
+      <!-- referencias -->
+      <section class="vista pagina" id="refs" hidden>
+        <div class="barra"><button data-go="">← Todos los temas</button></div>
+        <h2>Referencias</h2>
+        <ul>
+          <li>Young, H. D. y Freedman, R. A. <i>Física universitaria con física moderna</i>, vol. 2. Pearson.</li>
+          <li>Serway, R. A. y Jewett, J. W. <i>Física para ciencias e ingeniería</i>, vol. 2. Cengage.</li>
+          <li>Sears, F. W. y Zemansky, M. W. <i>Física universitaria</i>, vol. 2. Pearson.</li>
+          <li>PhET Interactive Simulations, Universidad de Colorado Boulder. phet.colorado.edu</li>
+          <li>HyperPhysics, Georgia State University. hyperphysics.phy-astr.gsu.edu</li>
+        </ul>
+        <p class="note">
+          Constantes: k = 8.99×10⁹ N·m²/C² · ε₀ = 8.854×10⁻¹² C²/(N·m²) · μ₀ = 4π×10⁻⁷ T·m/A · e = 1.602×10⁻¹⁹ C
+        </p>
+      </section>
+    </main>
+
+    <footer>Física II · Electricidad y magnetismo</footer>
+
+    <!-- Orden importante: cada archivo usa lo que definen los anteriores -->
+    <script src="js/utilidades.js"></script>
+    <script src="js/temas.js"></script>
+    <script src="js/ejercicios.js"></script>
+    <script src="js/calculadora.js"></script>
+    <script src="js/videos.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
